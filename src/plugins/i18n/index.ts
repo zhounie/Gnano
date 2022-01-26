@@ -33,7 +33,6 @@ export function siphonI18n(
 
 
 
-
 const messages = {
     zh: {
         ...siphonI18n(import.meta.globEager("./zh-CN/**/*.ts"), 'zh-CN'),
@@ -45,9 +44,8 @@ const messages = {
     }
 }
 
-
 const i18n = createI18n({
-    locale: 'en',
+    locale: localStorage.getItem('locale') || "zh",
     fallbackLocale: 'zh',
     messages
 })

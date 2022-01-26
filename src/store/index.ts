@@ -1,7 +1,17 @@
 import { createStore } from 'vuex'
 
-const store = createStore({
+import system from './modules/system';
 
+
+export interface State {
+    locale: string;
+}
+
+
+const store = createStore<State>({
+    modules: {
+        system
+    }
 })
 
 export default store;

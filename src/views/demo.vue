@@ -19,9 +19,7 @@
 
 <script setup lang="ts">
     import { useI18n } from 'vue-i18n'
-    // import { getCurrentInstance } from 'vue';
-    // const instance = getCurrentInstance()?.appContext.config.globalProperties.$store
-
+    
     const value = ''
     const options: any[] = []
 
@@ -29,5 +27,6 @@
     const { locale } = useI18n()
     const onChangeLange = (lange: string) => {
         locale.value = lange
+        localStorage.setItem('locale', lange)
     }
 </script>
