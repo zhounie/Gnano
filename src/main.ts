@@ -6,6 +6,9 @@ import { useElementPlus } from '@/plugins/element-plus'
 import { useI18n } from '@/plugins/i18n'
 import defaultConfig from './config/defaultConfig'
 
+import '@/assets/iconfont/iconfont.css'
+import 'reset-css'
+
 const app = createApp(App)
 
 Object.entries(defaultConfig).map(([key, value]) => {

@@ -30,7 +30,7 @@ export function siphonI18n(
     return langsObj;
 }
 
-
+export const $t = (key: string) => key;
 
 
 const messages = {

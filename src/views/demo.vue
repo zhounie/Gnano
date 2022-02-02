@@ -1,10 +1,6 @@
 <template>
-    <div>
-        <div @click="onChangeLange('zh')">简体中文</div>
-        <div @click="onChangeLange('en')">英文</div>
-        
+    <div class="demo">
         <p>{{ $t("buttons.hsLoginOut") }}</p>
-
         <el-select v-model="value" class="m-2" size="large">
             <el-option
             v-for="item in options"
@@ -30,3 +26,9 @@
         localStorage.setItem('locale', lange)
     }
 </script>
+
+<style lang="scss" scoped>
+.demo {
+    
+}
+</style>
