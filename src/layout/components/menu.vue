@@ -19,17 +19,18 @@
 <script setup lang="ts">
     import { ref, computed } from 'vue'
     import { Location, Document, Setting } from '@element-plus/icons-vue'
-    import { GetMenData } from '@/api/index'
     import { useRoute } from 'vue-router'
     import { useStore } from 'vuex'
 
     const store = useStore()
     const route = useRoute()
     const defaultActive = ref('')
-    const menuData = GetMenData({})
 
     const isCollapse = computed(() => {
         return store.getters.collapse
+    })
+    const menuData = computed(() => {
+        return store.getters.menu
     })
 
     defaultActive.value = route.path

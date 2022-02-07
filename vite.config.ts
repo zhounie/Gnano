@@ -8,6 +8,14 @@ const pathResolve = (dir: string) => {
 }
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://101.133.136.44:9600',
+        changeOrigin: true
+      }
+    }
+  },
   plugins: [
     vue(),
     themePreprocessorPlugin({
@@ -22,6 +30,9 @@ export default defineConfig({
           }, {
             scopeName: 'theme-light',
             path: pathResolve('src/layout/theme/light-vars.scss')
+          }, {
+            scopeName: 'theme-mingQing',
+            path: pathResolve('src/layout/theme/mingQing-vars.scss')
           }
         ],
         extract: true,
@@ -39,5 +50,8 @@ export default defineConfig({
       'element-plus/es/locale/lang/en',
       'element-plus/es/locale/lang/zh-cn'
     ]
+  },
+  build: {
+    sourcemap: true
   }
 })

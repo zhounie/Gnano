@@ -30,7 +30,7 @@ class Http {
             (config: AxiosRequestConfig) => {
                 const token = getToken()
                 if (token && config.headers) {
-                    config.headers['Authorization'] = `Bearer ${token}`
+                    config.headers['token'] = `${token}`
                     return config
                 } else {
                     return config

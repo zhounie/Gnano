@@ -8,6 +8,7 @@ import defaultConfig from './config/defaultConfig'
 
 import '@/assets/iconfont/iconfont.css'
 import 'reset-css'
+import '@/style/index.scss'
 
 const app = createApp(App)
 
