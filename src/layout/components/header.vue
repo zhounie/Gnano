@@ -19,11 +19,18 @@
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
-            <el-avatar
-                :size="30"
-                fit="cover"
-                src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-            ></el-avatar>
+            <el-dropdown @command="onClickLogout">
+                <el-avatar
+                    :size="30"
+                    fit="cover"
+                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                ></el-avatar>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item command="logout">退出系统</el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
             <el-icon class="layout-header-setting" @click="onClickSetting">
                 <setting />
             </el-icon>
@@ -36,12 +43,14 @@
     import { ref, computed } from 'vue'
     import { useI18n } from 'vue-i18n'
     import { useStore } from 'vuex'
+    import { useRouter } from 'vue-router'
     import { Expand, Setting, Fold, FullScreen } from '@element-plus/icons-vue'
     import LayoutSetting from './setting.vue'
     import { useFullscreen } from '@vueuse/core'
     const { isFullscreen, toggle } = useFullscreen()
     const { locale } = useI18n()
     const store = useStore()
+    const router = useRouter()
     const showSetting = ref(false)
 
     const isCollapse = computed(() => {
@@ -52,6 +61,10 @@
         locale.value = lang
         localStorage.setItem('locale', lang)
         store.dispatch('setLocale', lang)
+    }
+    const onClickLogout = () => {
+        localStorage.clear()
+        router.push('/login')
     }
     const onClickSetting = () => {
         showSetting.value = true

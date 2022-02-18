@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
@@ -8,7 +8,9 @@ const routes: RouteRecordRaw[] = [
             { path: 'home', component: () => import('@/views/home/index.vue')},
             { path: 'user', component: () => import('@/views/user/index.vue')},
             { path: 'demo', component: () => import('../../views/demo.vue') },
-            { path: 'map', component: () => import('@/views/map/index.vue') }
+            { path: 'map', component: () => import('@/views/map/index.vue') },
+            { path: '404', component: () => import('@/views/error/404.vue')},
+            { path: ':pathMatch(.*)', redirect: '/404' }
         ]
     },
     {
