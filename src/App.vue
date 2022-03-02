@@ -10,9 +10,9 @@
   import { onMounted, computed, watch, unref, ref } from 'vue'
   import enLocale from 'element-plus/lib/locale/lang/en'
   import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
-  import { useStore } from 'vuex'
-  const store = useStore()
+  import { useSystemStoreHook } from '@/store/modules/system'
+  const systemStore = useSystemStoreHook()
   const currentLocale = computed(() => {
-    return store.getters.locale === 'zh' ? zhLocale : enLocale
+    return systemStore.locale === 'zh' ? zhLocale : enLocale
   })
 </script>

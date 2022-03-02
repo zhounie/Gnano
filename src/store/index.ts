@@ -1,20 +1,10 @@
-import { createStore } from 'vuex'
+import { createPinia } from 'pinia'
+import type { App } from 'vue'
 
-import system from './modules/system';
+const store = createPinia()
 
-
-export interface State {
-    locale: string;
-    collapse: boolean;
-    menu: {path: string; name: string; icon: string}[]
+export function setupStore(app: App<Element>) {
+    app.use(store)
 }
 
-
-const store = createStore<State>({
-    modules: {
-        system
-    }
-})
-
-
-export default store;
+export { store }

@@ -42,25 +42,25 @@
 <script setup lang="ts">
     import { ref, computed } from 'vue'
     import { useI18n } from 'vue-i18n'
-    import { useStore } from 'vuex'
+    import { useSystemStoreHook } from '@/store/modules/system'
     import { useRouter } from 'vue-router'
     import { Expand, Setting, Fold, FullScreen } from '@element-plus/icons-vue'
     import LayoutSetting from './setting.vue'
     import { useFullscreen } from '@vueuse/core'
     const { isFullscreen, toggle } = useFullscreen()
     const { locale } = useI18n()
-    const store = useStore()
+    const store = useSystemStoreHook()
     const router = useRouter()
     const showSetting = ref(false)
 
     const isCollapse = computed(() => {
-        return store.getters.collapse
+        return store.collapse
     })
 
     const onClickCommand = (lang: string) => {
         locale.value = lang
         localStorage.setItem('locale', lang)
-        store.dispatch('setLocale', lang)
+        store.setLocale(lang)
     }
     const onClickLogout = () => {
         localStorage.clear()
@@ -70,7 +70,7 @@
         showSetting.value = true
     }
     const onChangeCollapse = () => {
-        store.dispatch('setCollapse')
+        store.setCollapse()
     }
 </script>
 

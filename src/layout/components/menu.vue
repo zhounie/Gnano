@@ -8,7 +8,7 @@
             @open="handleOpen"
             @close="handleClose"
         >
-            <el-menu-item v-for="(menu, key) in menuData" :index="menu.path">
+            <el-menu-item v-for="(menu, key) in menuData" :index="menu.path" :key="key">
                 <el-icon><Location /></el-icon>
                 <span>{{$t(menu.name)}}</span>
             </el-menu-item>
@@ -20,17 +20,17 @@
     import { ref, computed } from 'vue'
     import { Location, Document, Setting } from '@element-plus/icons-vue'
     import { useRoute } from 'vue-router'
-    import { useStore } from 'vuex'
+    import { useSystemStoreHook } from '@/store/modules/system'
 
-    const store = useStore()
+    const store = useSystemStoreHook()
     const route = useRoute()
     const defaultActive = ref('')
 
     const isCollapse = computed(() => {
-        return store.getters.collapse
+        return store.collapse
     })
     const menuData = computed(() => {
-        return store.getters.menu
+        return store.menu
     })
 
     defaultActive.value = route.path

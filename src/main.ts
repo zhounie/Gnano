@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from '@/router/index'
-import store from '@/store'
+import { setupStore } from '@/store'
 import { useElementPlus } from '@/plugins/element-plus'
 import { useI18n } from '@/plugins/i18n'
 import defaultConfig from './config/defaultConfig'
@@ -21,7 +21,7 @@ Object.entries(defaultConfig).map(([key, value]) => {
 
 app
 .use(router)
-.use(store)
+.use(setupStore)
 .use(useElementPlus)
 .use(useI18n)
 .mount('#app')

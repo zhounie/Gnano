@@ -1,8 +1,11 @@
-import { State } from '../index'
-import { Commit } from 'vuex'
+import { defineStore } from 'pinia'
+import { store } from '../index'
+
 import { $t } from '@/plugins/i18n/index'
-export default {
-    state: (): State => ({
+
+export const useSystemStore = defineStore({
+    id: 'system',
+    state: () => ({
         locale: 'zh',
         collapse: false,
         menu: [
@@ -29,31 +32,19 @@ export default {
             }
         ]
     }),
-    mutations: {
-        setLocale(state: State, lange: string) {
-            state.locale = lange
-        },
-        setCollapse(state: State) {
-            state.collapse = !state.collapse
-        }
+    getters: {
+   
     },
     actions: {
-        setLocale({ commit }: { commit: Commit }, lange: string) {
-            commit('setLocale', lange)
+        setLocale(lange: string) {
+            this.locale = lange
         },
-        setCollapse({ commit }: { commit: Commit }) {
-            commit('setCollapse')
+        setCollapse() {
+            this.collapse = !this.collapse
         }
     },
-    getters: {
-        locale(state: State) {
-            return state.locale
-        },
-        collapse(state: State) {
-            return state.collapse
-        },
-        menu(state: State) {
-            return state.menu
-        }
-    }
+})
+
+export function useSystemStoreHook() {
+    return useSystemStore(store)
 }
